@@ -1,19 +1,22 @@
 import streamlit as st
 import cv2
 import mediapipe as mp
+# Add this specific line to fix the AttributeError
+from mediapipe.python.solutions import hands as mp_hands 
+from mediapipe.python.solutions import drawing_utils as mp_drawing
 import numpy as np
 import time
 from PIL import Image
 
 # --- 1. AI MODEL SETUP ---
-# We initialize these once to save cloud memory
-mp_hands = mp.solutions.hands
+# Update this section to use the new import
 hands = mp_hands.Hands(
     static_image_mode=False, 
     max_num_hands=2, 
     min_detection_confidence=0.5
 )
 
+# ... (rest of your code stays the same)
 # Load the classic Haar Cascade for Face Detection
 # This file is built into the opencv-python-headless library
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
